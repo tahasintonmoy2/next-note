@@ -32,8 +32,8 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
     onError: (error) => {
       toast.error(`Failed to update reorder list, error is ${error}`);
     },
-  });  
-  
+  });
+
   const { execute: executeUpdateCardOrder } = useAction(updateCardOrder, {
     onSuccess: () => {
       toast.success("Card reorder updated");
@@ -73,7 +73,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         order: index,
       }));
       setOrderedData(items);
-      executeUpdateListOrder({items, boardId})
+      executeUpdateListOrder({ items, boardId })
     }
 
     // Users move cards
@@ -94,7 +94,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
       if (!sourceList.cards) {
         sourceList.cards = [];
       }
-      
+
       if (!destList.cards) {
         destList.cards = [];
       }
@@ -111,11 +111,11 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         });
 
         sourceList.cards = reorderedCards;
-        
+
         setOrderedData(newOrderedData);
 
         executeUpdateCardOrder({
-          boardId:boardId,
+          boardId: boardId,
           items: reorderedCards,
         });
       } else {
@@ -158,9 +158,11 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
           >
             {orderedData.map((list, index) => {
               return (
-                <div>
-                  <ListItem key={list.id} data={list} index={index} />
-                </div>
+                <ListItem
+                  key={list.id}
+                  data={list}
+                  index={index}
+                />
               );
             })}
             {provided.placeholder}
