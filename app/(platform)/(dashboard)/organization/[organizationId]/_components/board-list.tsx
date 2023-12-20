@@ -1,7 +1,10 @@
 import { FormPopover } from "@/components/forms/form-popover";
 import { Hint } from "@/components/hint";
 import { Skeleton } from "@/components/ui/skeleton";
+import { MAX_FREE_BOARDS } from "@/constants/boards";
 import { db } from "@/lib/db";
+import { getAvailableCount } from "@/lib/org-limit";
+import { checkSubscription } from "@/lib/subscription";
 import { auth } from "@clerk/nextjs";
 import { Info, Plus, User } from "lucide-react";
 import Link from "next/link";
@@ -22,6 +25,10 @@ export const Boardlist = async () => {
       createdAt: "desc",
     },
   });
+
+  const availableCount = await getAvailableCount();
+
+  const isPro = await checkSubscription();
 
   return (
     <div className="space-y-4">
@@ -52,15 +59,26 @@ export const Boardlist = async () => {
               <Plus className="h-5 w-5 mr-1" />
               Create new board
             </p>
-            <span className="text-xs text-slate-600">15 remaining</span>
-            <Hint
-              sideOffset={40}
-              description={`
-            Free Workspaces can have up to 15 open boards. For unlimited boards upgrade this workspace.
-          `}
-            >
-              <Info className="h-5 w-5 absolute bottom-2 right-2" />
-            </Hint>
+            <span className="text-xs font-semibold text-slate-600">
+             {isPro ? "Unlimited" : `${MAX_FREE_BOARDS - availableCount } remaining`}
+            </span>
+            {isPro ? (
+              <Hint
+                sideOffset={40}
+                description={"If you are facing any problems then make sure refresh this workspace."}
+              >
+                <Info className="h-5 w-5 absolute bottom-2 right-2" />
+              </Hint>
+            ):(
+              <Hint
+                sideOffset={40}
+                description={`
+                  Free Workspaces can have up to 15 open boards. For unlimited boards upgrade this workspace.
+              `}
+              >
+                <Info className="h-5 w-5 absolute bottom-2 right-2" />
+              </Hint>
+            )}
           </div>
         </FormPopover>
       </div>

@@ -4,9 +4,12 @@ import { OrganizationSwitcher, UserButton, auth } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
 import { MobileSidebar } from "./mobile-sidebar";
 import { NavFormPopover } from "./popover";
+import { checkSubscription } from "@/lib/subscription";
+import { SubscriptionButton } from "../organization/[organizationId]/billing/_components/subscription-button";
 
-export const Navbar = () => {
+export const Navbar = async() => {
   const { orgId } = auth();
+  const isPro = await checkSubscription();
 
   return (
     <nav className="fixed z-50 top-0 h-14 px-4 w-full bg-white border-b shadow-sm flex items-center">
@@ -35,6 +38,9 @@ export const Navbar = () => {
         </NavFormPopover>
       </div>
       <div className="ml-auto flex items-center gap-x-2">
+        {!isPro && (
+          <SubscriptionButton isPro={isPro} />
+        )}
         <OrganizationSwitcher
           hidePersonal
           afterCreateOrganizationUrl="/organization/:id"

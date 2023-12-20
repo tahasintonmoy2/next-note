@@ -7,7 +7,7 @@ import { Toaster } from "sonner";
 const Platformlayout = ({ 
   children 
 }: {
-  children: React.ReactNode 
+  children: React.ReactNode,
 }) => {
   return (
     <ClerkProvider>

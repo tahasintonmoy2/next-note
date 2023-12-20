@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Activity, CreditCard, LayoutDashboard, Settings } from "lucide-react";
+import { Activity, CreditCard, History, LayoutDashboard, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -43,8 +43,8 @@ export const NavItem = ({
       href: `/organization/${organization.id}`,
     },
     {
-      label: "Activity",
-      icon: <Activity className="h-5 w-5 mr-2" />,
+      label: "Activity History",
+      icon: <History className="h-5 w-5 mr-2" />,
       href: `/organization/${organization.id}/activity`,
     },
     {
@@ -93,8 +93,8 @@ export const NavItem = ({
                 size="sm"
                 onClick={() => onClick(route.href)}
                 className={cn(
-                  "w-full font-normal justify-start pl-10 mb-1",
-                  pathname === route.href && "bg-blue-600/10 text-blue-600"
+                  "w-full font-semibold justify-start pl-10 mb-1",
+                  pathname === route.href ? "bg-blue-600/10 text-blue-600 hover:text-blue-500" : "text-slate-600"
                 )}
                 variant="ghost"
               >

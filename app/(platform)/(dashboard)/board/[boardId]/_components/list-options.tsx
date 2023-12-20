@@ -4,12 +4,10 @@ import { copyList } from "@/actions/copy-list";
 import { deleteList } from "@/actions/delete-list";
 import { FormSubmit } from "@/components/forms/form-submit";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { useAction } from "@/hooks/use-action";
 import { List } from "@prisma/client";
@@ -64,8 +62,6 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           align="end"
           className="flex-col font-semibold items-start justify-start"
         >
-          <DropdownMenuLabel>Note Options</DropdownMenuLabel>
-          <DropdownMenuSeparator />
           <DropdownMenuItem className="font-semibold">
             <form action={onCopy}>
               <input hidden name="id" id="id" value={data.id} />

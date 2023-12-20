@@ -1,15 +1,14 @@
+import { siteConfig } from "@/config/site";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
-import { siteConfig } from "@/config/site";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
-    template: `${siteConfig.name} | %s`
+    template: `%s • ${siteConfig.name}`
   },
   description: siteConfig.description,
 };

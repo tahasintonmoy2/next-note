@@ -13,7 +13,7 @@ export async function generateMetadata({
 
   if (!orgId) {
     return {
-      title: "B Board",
+      title: "This organization page could not be found",
     };
   }
 
@@ -25,7 +25,7 @@ export async function generateMetadata({
   });
 
   return {
-    title: board?.title || "Board",
+    title: board?.title || "This board page could not be found",
   };
 }
 
