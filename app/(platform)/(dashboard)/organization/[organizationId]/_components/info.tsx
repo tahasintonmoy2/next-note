@@ -2,7 +2,6 @@
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { useOrganization } from "@clerk/nextjs";
-import { } from 'lottie-react';
 import { CreditCard } from "lucide-react";
 import Image from "next/image";
 
