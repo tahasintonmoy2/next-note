@@ -52,7 +52,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
                 name: "Next Note Pro",
                 description: "Unlimited boards for your organization"
               },
-              unit_amount: 2000,
+              unit_amount: 3000,
               recurring: {
                 interval: "month"
               },
