@@ -33,7 +33,7 @@ export const ListForm = () => {
     disableEditing();
   };
 
-  const {execute, fieldErrors} = useAction(createList, {
+  const {execute, fieldErrors, isLoading} = useAction(createList, {
     onSuccess: () => {
       disableEditing();
       toast.success("List created successfully");
@@ -73,13 +73,14 @@ export const ListForm = () => {
             id="title"
             ref={inputRef}
             errors={fieldErrors}
+            disabled={isLoading}
             type="text"
             className="w-full px-2 py-1 bg-transparent transition outline-none"
             placeholder="Enter list title..."
           />
           <input value={params.boardId} hidden name="boardId" />
           <div className="flex items-center gap-x-1">
-            <FormSubmit>
+            <FormSubmit disabled={isLoading}>
               Add list
             </FormSubmit>
             <Button onClick={disableEditing} variant="ghost" size="sm" >
