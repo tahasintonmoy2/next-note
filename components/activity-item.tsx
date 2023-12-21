@@ -23,7 +23,7 @@ export const ActivityItem = ({
           {generateLogMessage(data)}
         </p>
         <p className="text-xs text-muted-foreground">
-            {format(new Date(data.createdAt), "MMM d, yyyy 'at' h:mm a")}
+            {format(new Date(data.createdAt), "dd MMM yyyy 'at' h:mm a")}
         </p>
       </div>
     </li>
