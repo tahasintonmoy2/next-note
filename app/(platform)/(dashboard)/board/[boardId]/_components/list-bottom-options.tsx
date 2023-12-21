@@ -80,13 +80,12 @@ export const ListBottomSheetOptions = ({
 
   return (
     <>
-      <Button
-        variant="ghost"
+      <button
         onClick={onOpen}
         className="border-none md:hidden block focus:outline-none focus-visible:ring-transparent"
       >
         <MoreVertical className="h-5 w-5" />
-      </Button>
+      </button>
       <Sheet open={isOpen} onOpenChange={onClose}>
         <SheetContent
           side="bottom"
@@ -95,7 +94,7 @@ export const ListBottomSheetOptions = ({
           <form action={onCopy}>
             <Button
               variant="secondary"
-              className="flex items-center justify-start  mt-3 w-full"
+              className="flex items-center justify-start mt-3 w-full"
             >
               <input hidden name="id" id="id" value={data.id} />
               <input hidden name="boardId" id="boardId" value={data.boardId} />
@@ -108,6 +107,7 @@ export const ListBottomSheetOptions = ({
               </FormSubmit>
             </Button>
           </form>
+
           <form action={onDelete}>
             <Button
               variant="secondary"
@@ -117,10 +117,10 @@ export const ListBottomSheetOptions = ({
               <input hidden name="boardId" id="boardId" value={data.boardId} />
               <FormSubmit
                 variant="ghost"
-                className="flex justify-start w-full h-auto px-0"
+                className="flex px-0 justify-start h-auto w-full"
               >
                 <Trash className="h-5 w-5 text-red-600 group-hover:text-white mr-2" />
-                Delete this card
+                <span className="text-base font-semibold">Delete this card</span>
               </FormSubmit>
             </Button>
           </form>
