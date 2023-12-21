@@ -4,23 +4,20 @@ import { copyList } from "@/actions/copy-list";
 import { deleteList } from "@/actions/delete-list";
 import { FormSubmit } from "@/components/forms/form-submit";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { useAction } from "@/hooks/use-action";
 import { useBottomSheet } from "@/hooks/use-bottom-sheet";
-import { useMoblieSidebar } from "@/hooks/use-moblie-sidebar";
 import { List } from "@prisma/client";
-import { Copy, MoreVertical, Plus, Trash } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Copy, MoreVertical, Trash } from "lucide-react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 interface ListOptionsProps {
   data: List;
-  onAddCard: () => void;
 }
 
 export const ListBottomSheetOptions = ({
-  data,
-  onAddCard,
+  data
 }: ListOptionsProps) => {
   const { execute: executeDelete } = useAction(deleteList, {
     onSuccess: (data) => {
@@ -30,6 +27,7 @@ export const ListBottomSheetOptions = ({
           return `${data.title} note is deleted`;
         },
       });
+      onClose();
     },
     onError: (error) => {
       toast.error(`${data.title} note is deleted fail, error is ${error}`);
@@ -41,6 +39,7 @@ export const ListBottomSheetOptions = ({
   const { execute: executeCopy } = useAction(copyList, {
     onSuccess: (data) => {
       toast.success(`${data.title} note is copy`);
+      onClose();
     },
     onError: (error) => {
       toast.error(`${data.title} note is copy fail, error is ${error}`);
@@ -109,14 +108,6 @@ export const ListBottomSheetOptions = ({
               </FormSubmit>
             </Button>
           </form>
-          <Button
-            variant="secondary"
-            onClick={onAddCard}
-            className="flex items-center justify-start  mt-3 w-full"
-          >
-            <Plus className="h-5 w-5 mr-2" />
-            Add new card
-          </Button>
           <form action={onDelete}>
             <Button
               variant="secondary"

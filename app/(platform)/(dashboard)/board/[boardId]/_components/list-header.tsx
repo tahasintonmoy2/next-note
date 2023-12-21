@@ -124,7 +124,7 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
         )}
       </div>
       <div className="md:hidden block">
-        <ListBottomSheetOptions data={data} onAddCard={onAddCard} />
+        <ListBottomSheetOptions data={data} />
       </div>
       <div className="md:block hidden">
         <ListOptions data={data} onAddCard={onAddCard} />
