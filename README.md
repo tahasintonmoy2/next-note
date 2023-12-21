@@ -10,7 +10,7 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/select-org
 
 NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=
 
-DATABASE_URL="mysql://database-username:password@localhost:port/database-name"
+DATABASE_URL=
 
 STRIPE_API_KEY=
 NEXT_PUBLIC_APP_URL=http://localhost:3000
