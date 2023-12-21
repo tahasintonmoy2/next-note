@@ -37,19 +37,6 @@ export const Boardlist = async () => {
         Your boards
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {boards.map((board)=> (
-          <Link 
-           key={board.id}
-           href={`/board/${board.id}`}
-           className="group relative aspect-video bg-no-repeat bg-center bg-cover bg-blue-600 rounded-sm w-full h-full p-2 overflow-hidden"
-           style={{backgroundImage: `url(${board.imageThumbUrl})`}}
-          >
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition"/>
-            <p className="text-white relative font-semibold">
-              {board.title}
-            </p>
-          </Link>
-        ))}
         <FormPopover side="right" sideOffset={0}>
           <div
             role="button"
@@ -57,24 +44,24 @@ export const Boardlist = async () => {
           >
             <p className="flex items-center">
               <Plus className="h-5 w-5 mr-1" />
-              <span className="md:block hidden">
-                Create new board
-              </span>
-              <span className="md:hidden block">
-                Create board
-              </span>
+              <span className="md:block hidden">Create new board</span>
+              <span className="md:hidden block">Create board</span>
             </p>
             <span className="text-xs font-semibold text-slate-600">
-             {isPro ? "Unlimited" : `${MAX_FREE_BOARDS - availableCount } remaining`}
+              {isPro
+                ? "Unlimited"
+                : `${MAX_FREE_BOARDS - availableCount} remaining`}
             </span>
             {isPro ? (
               <Hint
                 sideOffset={40}
-                description={"If you are facing any problems then make sure refresh this workspace."}
+                description={
+                  "If you are facing any problems then make sure refresh this workspace."
+                }
               >
                 <Info className="h-5 w-5 absolute bottom-2 right-2" />
               </Hint>
-            ):(
+            ) : (
               <Hint
                 sideOffset={40}
                 description={`
@@ -86,6 +73,17 @@ export const Boardlist = async () => {
             )}
           </div>
         </FormPopover>
+        {boards.map((board) => (
+          <Link
+            key={board.id}
+            href={`/board/${board.id}`}
+            className="group relative aspect-video bg-no-repeat bg-center bg-cover bg-blue-600 rounded-sm w-full h-full p-2 overflow-hidden"
+            style={{ backgroundImage: `url(${board.imageThumbUrl})` }}
+          >
+            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition" />
+            <p className="text-white relative font-semibold">{board.title}</p>
+          </Link>
+        ))}
       </div>
     </div>
   );
