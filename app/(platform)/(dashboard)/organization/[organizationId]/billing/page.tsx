@@ -11,7 +11,7 @@ const BillingPage = async() => {
     <div className='w-full'>
        <Info isPro={isPro} />
        <Separator className="my-3 max-w-[66.5rem] md:block hidden" />
-       <Separator className="my-3 w-[22.5rem] md:hidden block" />
+       <Separator className="my-3 w-[22.4rem] md:hidden block" />
        <SubscriptionButton isPro={isPro} />
     </div>
   )
