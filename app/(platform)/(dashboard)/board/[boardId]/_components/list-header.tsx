@@ -7,10 +7,11 @@ import { useEventListener } from "usehooks-ts";
 
 import { updateList } from "@/actions/update-list";
 import { FormInput } from "@/components/forms/form-input";
-import { useAction } from "@/hooks/use-action";
-import { ListOptions } from "./list-options";
-import { CornerDownLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAction } from "@/hooks/use-action";
+import { CornerDownLeft } from "lucide-react";
+import { ListBottomSheetOptions } from "./list-bottom-options";
+import { ListOptions } from "./list-options";
 
 interface ListHeaderProps {
   data: List;
@@ -109,9 +110,9 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
                 Press <CornerDownLeft className="h-4 w-4 px-3" /> to save
               </p>
             )}
-              <Button onClick={disableEditing} size="sm" className="mt-1">
-                Cancel
-              </Button>
+            <Button onClick={disableEditing} size="sm" className="mt-1">
+              Cancel
+            </Button>
           </>
         ) : (
           <div
@@ -122,7 +123,12 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
           </div>
         )}
       </div>
-      <ListOptions data={data} onAddCard={onAddCard} />
+      <div className="md:hidden block">
+        <ListBottomSheetOptions data={data} onAddCard={onAddCard} />
+      </div>
+      <div className="md:block hidden">
+        <ListOptions data={data} onAddCard={onAddCard} />
+      </div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAction } from "@/hooks/use-action";
 import { useAuth } from "@clerk/nextjs";
@@ -28,7 +28,7 @@ export const BoardOptions = ({ id, board }: BoardOptionsProps) => {
   });
 
   const router = useRouter();
-  const { orgId } = useAuth()
+  const { orgId } = useAuth();
 
   const promise = () => new Promise((resolve) => setTimeout(resolve, 2000));
 
@@ -36,9 +36,9 @@ export const BoardOptions = ({ id, board }: BoardOptionsProps) => {
     toast.promise(promise, {
       loading: "Please wait few minutes",
       success: () => {
-        return "Board deleted now redirecting to organization page"
-      }
-    })
+        return "Board deleted now redirecting to organization page";
+      },
+    });
   }
 
   const onDelete = () => {
@@ -46,8 +46,8 @@ export const BoardOptions = ({ id, board }: BoardOptionsProps) => {
   };
 
   const onRedirect = () => {
-    router.push(`/organization/${orgId}`)
-  }
+    router.push(`/organization/${orgId}`);
+  };
 
   return (
     <>
@@ -56,7 +56,11 @@ export const BoardOptions = ({ id, board }: BoardOptionsProps) => {
           <MoreHorizontal className="h-5 w-5" />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={onRedirect} disabled={isLoading} className="md:hidden items-center flex">
+          <DropdownMenuItem
+            onClick={onRedirect}
+            disabled={isLoading}
+            className="md:hidden items-center flex"
+          >
             <ArrowLeft className="h-5 w-5 mr-2" />
             Return to {board.title} org page
           </DropdownMenuItem>
