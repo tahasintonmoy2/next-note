@@ -6,8 +6,11 @@ import { FormSubmit } from "@/components/forms/form-submit";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAction } from "@/hooks/use-action";
+import { useBottomSheet } from "@/hooks/use-bottom-sheet";
+import { useMoblieSidebar } from "@/hooks/use-moblie-sidebar";
 import { List } from "@prisma/client";
 import { Copy, MoreVertical, Plus, Trash } from "lucide-react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
 interface ListOptionsProps {
@@ -58,21 +61,43 @@ export const ListBottomSheetOptions = ({
     executeCopy({ id, boardId });
   };
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  const onOpen = useBottomSheet((state) => state.onOpen);
+  const onClose = useBottomSheet((state) => state.onClose);
+  const isOpen = useBottomSheet((state) => state.isOpen);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    onClose();
+  }, [onClose]);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <>
-      <Sheet>
-        <SheetTrigger className="border-none md:hidden block focus:outline-none focus-visible:ring-transparent">
-          <MoreVertical className="h-5 w-5" />
-        </SheetTrigger>
+      <Button
+        variant="ghost"
+        onClick={onOpen}
+        className="border-none md:hidden block focus:outline-none focus-visible:ring-transparent"
+      >
+        <MoreVertical className="h-5 w-5" />
+      </Button>
+      <Sheet open={isOpen} onOpenChange={onClose}>
         <SheetContent
           side="bottom"
           className="flex-col font-semibold items-start justify-start rounded-t-xl"
         >
-          <Button
-            variant="secondary"
-            className="flex items-center justify-start  mt-3 w-full"
-          >
-            <form action={onCopy}>
+          <form action={onCopy}>
+            <Button
+              variant="secondary"
+              className="flex items-center justify-start  mt-3 w-full"
+            >
               <input hidden name="id" id="id" value={data.id} />
               <input hidden name="boardId" id="boardId" value={data.boardId} />
               <FormSubmit
@@ -82,8 +107,8 @@ export const ListBottomSheetOptions = ({
                 <Copy className="h-5 w-5 mr-2" />
                 <span className="text-base font-semibold">Copy list</span>
               </FormSubmit>
-            </form>
-          </Button>
+            </Button>
+          </form>
           <Button
             variant="secondary"
             onClick={onAddCard}
@@ -92,24 +117,22 @@ export const ListBottomSheetOptions = ({
             <Plus className="h-5 w-5 mr-2" />
             Add new card
           </Button>
-          <Button
-            variant="secondary"
-            className="font-semibold flex items-start my-3 w-full justify-start"
-          >
-            <form action={onDelete}>
+          <form action={onDelete}>
+            <Button
+              variant="secondary"
+              className="font-semibold flex items-start my-3 w-full justify-start"
+            >
               <input hidden name="id" id="id" value={data.id} />
               <input hidden name="boardId" id="boardId" value={data.boardId} />
               <FormSubmit
                 variant="ghost"
                 className="flex justify-start w-full h-auto px-0"
               >
-                <span className="hover:bg-red-600/80 group hover:text-white flex items-center px-1.5 py-1 rounded-sm">
-                  <Trash className="h-5 w-5 text-red-600 group-hover:text-white mr-2" />
-                  Delete this card
-                </span>
+                <Trash className="h-5 w-5 text-red-600 group-hover:text-white mr-2" />
+                Delete this card
               </FormSubmit>
-            </form>
-          </Button>
+            </Button>
+          </form>
         </SheetContent>
       </Sheet>
     </>
