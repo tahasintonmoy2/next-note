@@ -57,7 +57,12 @@ export const Boardlist = async () => {
           >
             <p className="flex items-center">
               <Plus className="h-5 w-5 mr-1" />
-              Create new board
+              <span className="md:block hidden">
+                Create new board
+              </span>
+              <span className="md:hidden block">
+                Create board
+              </span>
             </p>
             <span className="text-xs font-semibold text-slate-600">
              {isPro ? "Unlimited" : `${MAX_FREE_BOARDS - availableCount } remaining`}

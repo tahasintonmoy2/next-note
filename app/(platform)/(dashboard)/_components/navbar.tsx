@@ -7,7 +7,7 @@ import { NavFormPopover } from "./popover";
 import { checkSubscription } from "@/lib/subscription";
 import { SubscriptionButton } from "../organization/[organizationId]/billing/_components/subscription-button";
 
-export const Navbar = async() => {
+export const Navbar = async () => {
   const { orgId } = auth();
   const isPro = await checkSubscription();
 
@@ -38,9 +38,11 @@ export const Navbar = async() => {
         </NavFormPopover>
       </div>
       <div className="ml-auto flex items-center gap-x-2">
-        {!isPro && (
-          <SubscriptionButton isPro={isPro} />
-        )}
+        <div className="md:block hidden">
+          {!isPro && (
+            <SubscriptionButton isPro={isPro} />
+          )}
+        </div>
         <OrganizationSwitcher
           hidePersonal
           afterCreateOrganizationUrl="/organization/:id"

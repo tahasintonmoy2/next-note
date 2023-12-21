@@ -4,22 +4,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 interface LogoProps {
-    href: string
+  href: string
 }
 
 const textFont = Jost({
-  subsets:["latin"]
+  subsets: ["latin"]
 })
 
 const Logo = ({
-    href
+  href
 }: LogoProps) => {
   return (
     <div>
-        <Link href={href} className='flex items-center gap-x-2 font-semibold'>
-            <Image src="/logo.png" alt='' height={30} width={30}/>
-            <p className={cn('text-lg', textFont)}>Next Note</p>
-        </Link>
+      <Link href={href} className='flex items-center gap-x-2 font-semibold'>
+        <Image src="/logo.png" alt='' height={30} width={30} />
+        <p className={cn('text-lg hidden md:block', textFont)}>
+          Next Note
+        </p>
+      </Link>
     </div>
   )
 }

@@ -24,7 +24,7 @@ export const Hint = ({
     <>
       <TooltipProvider>
         <Tooltip delayDuration={0}>
-          <TooltipTrigger>
+          <TooltipTrigger className="hidden md:block">
             {children}
           </TooltipTrigger>
           <TooltipContent

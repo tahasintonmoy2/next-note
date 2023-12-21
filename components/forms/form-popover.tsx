@@ -60,7 +60,9 @@ export const FormPopover = ({
 
   return (
     <Dialog>
-      <DialogTrigger ref={closeRef}>{children}</DialogTrigger>
+      <DialogTrigger ref={closeRef}>
+        {children}
+      </DialogTrigger>
       <DialogContent className="w-80 pt-3">
         <div className="text-sm font-medium text-center pb-4">
           Create new board

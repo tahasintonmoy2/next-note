@@ -22,12 +22,19 @@ interface ListOptionsProps {
 export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
   const { execute: executeDelete } = useAction(deleteList, {
     onSuccess: (data) => {
-      toast.success(`${data.title} note is deleted`);
+      toast.promise(promise,{
+        loading: "Please wait few minutes",
+        success:()=> {
+          return `${data.title} note is deleted`
+        } 
+      })
     },
     onError: (error) => {
       toast.error(`${data.title} note is deleted fail, error is ${error}`);
     },
   });
+
+  const promise = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
   const { execute: executeCopy } = useAction(copyList, {
     onSuccess: (data) => {

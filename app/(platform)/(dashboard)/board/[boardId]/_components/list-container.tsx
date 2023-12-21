@@ -154,8 +154,9 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
           <ol
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="grid grid-cols-2 overflow-hidden gap-y-4 sm:grid-cols-3 lg:grid-cols-4 gap-3"
+            className="grid grid-cols-1 overflow-hidden gap-y-4 sm:grid-cols-3 lg:grid-cols-4 gap-3"
           >
+            <ListForm />
             {orderedData.map((list, index) => {
               return (
                 <ListItem
@@ -166,7 +167,6 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
               );
             })}
             {provided.placeholder}
-            <ListForm />
           </ol>
         )}
       </Droppable>
