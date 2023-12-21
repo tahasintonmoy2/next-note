@@ -1,3 +1,22 @@
+## env SETUP
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/select-org
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/select-org
+
+NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=
+
+DATABASE_URL="mysql://database-username:password@localhost:port/database-name"
+
+STRIPE_API_KEY=
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+STRIPE_WEBHOOK_SECRET=
+```
+##
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
