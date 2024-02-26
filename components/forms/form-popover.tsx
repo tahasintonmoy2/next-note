@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { FormPicker } from "./form-picker";
 import { useProModal } from "@/hooks/use-pro-modal";
+import { FormCategorySelecter } from "./form-category-selecter";
 
 interface FormPopoverProps {
   children: React.ReactNode;
@@ -63,7 +64,8 @@ export const FormPopover = ({
       <DialogTrigger ref={closeRef}>
         {children}
       </DialogTrigger>
-      <DialogContent className="w-80 pt-3">
+      <DialogContent className="w-80 h-[28rem] pt-3">
+       <FormCategorySelecter>
         <div className="text-sm font-medium text-center pb-4">
           Create new board
         </div>
@@ -73,12 +75,14 @@ export const FormPopover = ({
             <FormInput
               id="title"
               label="Board title"
+              className="placeholder-slate-800 text-slate-800"
               type="text"
               errors={fieldErrors}
             />
           </div>
           <FormSubmit className="w-full">Create</FormSubmit>
         </form>
+       </FormCategorySelecter> 
       </DialogContent>
     </Dialog>
   );

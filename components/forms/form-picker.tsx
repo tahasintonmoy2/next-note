@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { unsplash } from "@/lib/unsplash";
-import { toast } from "sonner";
-import { Check, Loader } from "lucide-react";
-import { useFormStatus } from "react-dom";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { defaultImages } from "@/constants/images";
+import { unsplash } from "@/lib/unsplash";
+import { cn } from "@/lib/utils";
+import { Check, Loader } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { FormError } from "./form-error";
+import { useEffect, useState } from "react";
+import { useFormStatus } from "react-dom";
+import { toast } from "sonner";
+import { FormError } from "@/components/forms/form-error";
 
 interface FormPickerProps {
   id: string;
@@ -57,12 +57,12 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
 
   return (
     <div className="relative">
-      <div className="grid grid-cols-3 gap-2 mb-2">
+      <div className="grid grid-cols-3 gap-2 mb-2 mx-3">
         {images.map((image) => (
           <div
             key={image.id}
             className={cn(
-              "cursor-pointer aspect-video relative group transition hover:opacity-75 bg-muted",
+              "cursor-pointer rounded-md aspect-video relative group transition hover:opacity-75 bg-muted",
               pending && "cursor-auto hover:opacity-50 opacity-50"
             )}
             id={image.id}
@@ -94,7 +94,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
             <Link
               href={image.links.html}
               target="_blank"
-              className="opacity-0 hidden md:block group-hover:opacity-100 absolute bottom-0 w-full text-[10px] truncate text-white hover:underline p-1 bg-black/50"
+              className="opacity-0 hidden md:block group-hover:opacity-100 h-[0.5rem] absolute bottom-0 pb-8 w-full text-[10px] truncate text-white hover:underline pl-[0.3rem] bg-black/50"
             >
               {image.user.name}
             </Link>
