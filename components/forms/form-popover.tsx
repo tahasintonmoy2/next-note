@@ -1,21 +1,25 @@
 "use client";
 
 import { createBoard } from "@/actions/create-board";
-import {
+import { 
   Dialog,
   DialogContent,
   DialogTrigger
 } from "@/components/ui/dialog";
 import { useAction } from "@/hooks/use-action";
-import React, { ElementRef, useEffect, useRef, useState } from "react";
+import React, { 
+  ElementRef,
+  useEffect,
+  useRef,
+  useState
+} from "react";
 
 import { FormInput } from "@/components/forms/form-input";
 import { FormSubmit } from "@/components/forms/form-submit";
+import { useProModal } from "@/hooks/use-pro-modal";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { FormPicker } from "./form-picker";
-import { useProModal } from "@/hooks/use-pro-modal";
-import { FormCategorySelecter } from "./form-category-selecter";
 
 interface FormPopoverProps {
   children: React.ReactNode;
@@ -24,9 +28,7 @@ interface FormPopoverProps {
   sideOffset?: number;
 }
 
-export const FormPopover = ({
-  children,
-}: FormPopoverProps) => {
+export const FormPopover = ({ children }: FormPopoverProps) => {
   const closeRef = useRef<ElementRef<"button">>(null);
   const router = useRouter();
   const proModal = useProModal();
@@ -36,7 +38,7 @@ export const FormPopover = ({
     onSuccess: (data) => {
       toast.success("Board created successful");
       closeRef.current?.click();
-      router.push(`/board/${data.id}`)
+      router.push(`/board/${data.id}`);
     },
     onError: (error) => {
       toast.error(error);
@@ -61,11 +63,8 @@ export const FormPopover = ({
 
   return (
     <Dialog>
-      <DialogTrigger ref={closeRef}>
-        {children}
-      </DialogTrigger>
-      <DialogContent className="w-80 h-[28rem] pt-3">
-       <FormCategorySelecter>
+      <DialogTrigger ref={closeRef}>{children}</DialogTrigger>
+      <DialogContent className="w-[330px] pt-3">
         <div className="text-sm font-medium text-center pb-4">
           Create new board
         </div>
@@ -82,7 +81,6 @@ export const FormPopover = ({
           </div>
           <FormSubmit className="w-full">Create</FormSubmit>
         </form>
-       </FormCategorySelecter> 
       </DialogContent>
     </Dialog>
   );

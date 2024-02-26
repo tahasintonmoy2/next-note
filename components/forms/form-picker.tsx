@@ -94,7 +94,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
             <Link
               href={image.links.html}
               target="_blank"
-              className="opacity-0 hidden md:block group-hover:opacity-100 h-[0.5rem] absolute bottom-0 pb-8 w-full text-[10px] truncate text-white hover:underline pl-[0.3rem] bg-black/50"
+              className="opacity-0 hidden md:block group-hover:opacity-100 h-[0.5rem] absolute bottom-0 pb-4 w-full text-[10px] truncate text-white hover:underline pl-[0.3rem] bg-black/50"
             >
               {image.user.name}
             </Link>
